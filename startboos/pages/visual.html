@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script>
+function carga(){
+
+    asa= document.Hola.boxT.value;
+    document.Hola.txt.value=asa;
+}
+function vprom(){
+    seluni=document.getElementById('seuni').value;
+    if (seluni=="select") {
+        document.getElementById('VP').value="";
+    }
+    if (seluni=="Publica") {
+        document.getElementById('VP').value="$21,933";
+    }
+    if (seluni=="UDL") {
+        document.getElementById('VP').value="$145,920 a $220,200";
+    }
+    if (seluni=="La Salle") {
+        document.getElementById('VP').value="$221,760 a $336,480";
+    }
+    if (seluni=="UNIVA") {
+        document.getElementById('VP').value="$115,200 a $375,660";
+    }
+    if (seluni=="Ibero") {
+        document.getElementById('VP').value="$398,160 a $517,440";
+    }
+    document.getElementById('VP').disabled=true;
+}
+function splan(){
+    splani=document.getElementById('plan').value;
+    document.getElementById('an').value="";
+    document.getElementById('mn').value="";
+    document.getElementById('ms').value="";
+    if (splani=="ame") {
+        document.getElementById('an').disabled=false;
+        document.getElementById('mn').disabled=true;
+        document.getElementById('ms').disabled=false;
+    }
+    if (splani=="mm") {
+        document.getElementById('an').disabled=true;
+        document.getElementById('ms').disabled=false;
+        document.getElementById('mn').disabled=false;
+
+    }
+    if (splani=="amo") {
+        document.getElementById('ms').disabled=true;
+        document.getElementById('an').disabled=false;
+        document.getElementById('mn').disabled=false;
+    }
+}
+function visuali(){
+    splani=document.getElementById('plan').value;
+    if (splani=="ame") {
+        var van=parseFloat(document.getElementById('an').value);
+        var vms=parseFloat(document.getElementById('ms').value);
+        var acum=vms;
+        for (var i = 0; i < (van*12)-1; i++) {
+            acum=acum+(acum*0.0029);
+            acum=acum+vms;
+        }
+        var monto=acum.toString();
+        document.getElementById('mn').value=monto;
+    }
+    if (splani=="mm") {
+        vms=parseFloat(document.getElementById('ms').value);
+        vmn=parseFloat(document.getElementById('mn').value);
+        var acum=vms;
+        for (var i = 0; acum < vmn; i++) {
+            acum=acum+(acum*0.0029);
+            acum=acum+vms;
+        }
+        i=(i+1)/12;
+        var monto=i.toString();
+        document.getElementById('an').value=monto;
+
+    }
+    if (splani=="amo") {
+        van=parseFloat(document.getElementById('an').value);
+        vmn=parseFloat(document.getElementById('mn').value);
+        
+        var vp=Math.pow(1.035,van);
+        vp=vmn/vp;
+        var exp=van*12;
+        var inm=Math.pow(1.0029,exp);
+        anu=inm*0.0029;
+        anu=anu/(inm-1);
+        anu=anu*vp;
+        var monto=anu.toString();
+        document.getElementById('ms').value=monto;
+    }
+}
+</script>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>PADI</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- MetisMenu CSS -->
+    <link href="../bower_components/metisMenu/dist/metisMenu.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="../dist/css/sb-admin-2.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="../bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+     <div id="wrapper">
+
+        <!-- Navigation -->
+        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="index.html"><img src="PADI.jpg" width="400" height="80" /></a>
+            </div>
+            <!-- /.navbar-header -->
+
+            <!-- /.navbar-top-links -->
+            <br/><br/>
+            <div class="navbar-default sidebar" role="navigation">
+
+                <div class="sidebar-nav navbar-collapse">
+                    <ul class="nav" id="side-menu">
+                        <li>
+                            <br />
+              
+                            <br />
+
+                        </li>
+                        <li>
+                            <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> Bienvenido </a>
+                        </li>
+                        <li>
+                            <a href="visual.html"><i class="fa fa-bar-chart-o fa-fw"></i> Simulador<span class="fa arrow"></span></a>
+                            
+                            <!-- /.nav-second-level -->
+                        </li>
+                        <li>
+                            <a href=""><i class="fa fa-table fa-fw"></i> Tables</a>
+                        </li>
+                        
+                            <!-- /.nav-second-level -->
+                        
+                        <li>
+                            <a href="login.html"><i class="fa fa-check"></i> Login<span class="fa arrow"></span></a>
+                            
+                            <!-- /.nav-second-level -->
+                        </li>
+                    </ul>
+                </div>
+                <!-- /.sidebar-collapse -->
+            </div>
+            <!-- /.navbar-static-side -->
+        </nav>
+
+        <!-- INICIO slide central-->
+
+        <div id="page-wrapper">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">Datos para Simulador</h1>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Agregue la informacion que se pide 
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <form role="form" name "datos">
+                                        <div class="form-group">
+                                            <label>Universidades</label>
+                                            <select class="form-control" name="Universidades" id="seuni" onclick="vprom()">
+                                              <option value="select">click seleccionar</option>
+                                              <option value="Publica">Publica</option> 
+                                              <option value="UDL">UDL</option> 
+                                              <option value="La Salle">La Salle</option>
+                                              <option value="UNIVA">UNIVA</option>
+                                              <option value="Ibero">Ibero</option>
+                                            </select>
+                                            <p class="help-block">Seleccione la universidad en la que desea que su hijo estudie.</p>
+                                            <input type="text" name="vapo" id="VP" >
+                                        </div>
+                                        <!--<input type="button" class="btn btn-default" 
+                                            onclick="vprom()" 
+                                            value="Valor Promedio">-->
+                                    </form>
+                                    <p></p>
+                                    <form role="form">
+                                        <fieldset>
+                                            <div class="form-group">
+                                                <label for="disabledSelect">Seleccione plan de ahorro</label>
+                                                <select  class="form-control" name="Universidades" id="plan" onclick="splan()">
+                                                    <option value="ame">Años-Meses</option>
+                                                    <option value="mm">Meses-Monto</option>
+                                                    <option value="amo">Años-Monto</option>
+                                                </select>
+                                                <p></p>
+                                                Años <input type="text" name="an" id="an">
+                                                <p></p>
+                                                Mensualidades <input type="text" name="mensu" id="ms"><p> </p>
+                                                Monto <input type="text" name="mon" id="mn">
+                                            </div>
+                                            <input type="button" id="btCalc" value="visualizacion" class="btn btn-primary" onclick="visuali()"/>
+                                        </fieldset>
+                                    </form>
+
+                                </div>
+                                <!-- /.col-lg-6 (nested) -->
+                            </div>
+                            <!-- /.row (nested) -->
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- FIN slide central-->
+
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- jQuery -->
+    <script src="../bower_components/jquery/dist/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="../bower_components/metisMenu/dist/metisMenu.min.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="../dist/js/sb-admin-2.js"></script>
+
+</body>
+
+</html>
